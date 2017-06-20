@@ -80,6 +80,10 @@ test:
 #
 production:
   <<: *default
-  database: siteapis_production
-  username: siteapis
-  password: <%= ENV['SITEAPIS_DATABASE_PASSWORD'] %>
+  adapter: <%= ENV['DB_ADAPTER'] %>
+  encoding: <%= ENV['DB_ENCODER'] %>
+  host: <%= ENV['DB_HOST'] %>
+  database: <%= ENV['DB_NAME'] %>
+  username: <%= ENV['DB_USER'] %>
+  password: <%= ENV['DB_PASS'] %>
+  port: <%= ENV['DB_PORT'] %>

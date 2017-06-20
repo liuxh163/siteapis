@@ -1,0 +1,47 @@
+version: '2'
+
+services:
+  cacheserver:
+    restart: always
+    image: redis:latest
+    command:
+    - --loglevel warning
+    volumes:
+    - /Users/liuxinghao/Documents/wksapce/redis:/var/lib/redis:Z
+
+  dbserver:
+    restart: always
+    image: postgres:9.6.2
+    volumes:
+    - /Users/liuxinghao/Documents/wksapce/postgresql:/var/lib/postgresql:Z
+    environment:
+    - DB_USER=site
+    - DB_PASS=site123
+    - DB_NAME=backapi_production
+    - DB_EXTENSION=pg_trgm
+
+  site:
+    restart: always
+    image: siteapis:1.0.0
+    depends_on:
+    - cacheserver
+    - dbserver
+    ports:
+    - "10080:6789"
+    volumes:
+    - /Users/liuxinghao/Documents/wksapce/rails5/backapi://sites/siteapis/upload:Z
+
+    environment:
+    - DEBUG=false
+    - SECRET_KEY_BASE=this-should-be-chang-when-deploy-on-production
+
+    - DB_ADAPTER=postgresql
+    - DB_ENCODER=unicode
+    - DB_HOST=dbserver
+    - DB_PORT=5432
+    - DB_USER=site
+    - DB_PASS=site123
+    - DB_NAME=sites_production
+
+    - REDIS_HOST=redis
+    - REDIS_PORT=6379
