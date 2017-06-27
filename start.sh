@@ -2,4 +2,6 @@
 bundle update
 bundle install
 rake db:migrate
-rails s -p 6789 -e production
+rake db:seed
+rake data:create_microposts
+rails s -p 6789

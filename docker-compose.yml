@@ -1,29 +1,9 @@
 version: '2'
 
 services:
-  cacheserver:
-    restart: always
-    image: redis:latest
-    command:
-    - --loglevel warning
-    volumes:
-    - /Users/liuxinghao/Documents/wksapce/redis:/var/lib/redis:Z
-
-  dbserver:
-    restart: always
-    image: postgres:9.6.2
-    volumes:
-    - /Users/liuxinghao/Documents/wksapce/postgresql:/var/lib/postgresql:Z
-
-    environment:
-    - POSTGRES_USER=site
-    - POSTGRES_PASSWORD=site123
-    - POSTGRES_DB=sites_production
-    - DB_EXTENSION=pg_trgm
-
   site:
     restart: always
-    image: liuxh/siteapis:1.0.1
+    image: liuxh/siteapis
     depends_on:
     - cacheserver
     - dbserver
@@ -44,3 +24,26 @@ services:
 
     - REDIS_HOST=cacheserver
     - REDIS_PORT=6379
+
+  cacheserver:
+    restart: always
+    image: redis:latest
+    command:
+    - --loglevel warning
+    volumes:
+    - /Users/liuxinghao/Documents/wksapce/redis:/var/lib/redis:Z
+
+  dbserver:
+    restart: always
+    image: postgres:9.6.2
+    volumes:
+    - /Users/liuxinghao/Documents/wksapce/postgresql:/var/lib/postgresql:Z
+
+    ports:
+    - "15432:5432"
+
+    environment:
+    - POSTGRES_USER=site
+    - POSTGRES_PASSWORD=site123
+    - POSTGRES_DB=sites_production
+    - DB_EXTENSION=pg_trgm

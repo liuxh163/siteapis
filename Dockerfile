@@ -7,6 +7,7 @@ RUN echo "gem: --no-ri --no-rdoc" > ~/.gemrc
 # cope site code to docker
 RUN mkdir -p /sites/siteapis/
 ENV SITE_HOME /sites/siteapis/
+ENV RAILS_ENV production
 WORKDIR /sites/siteapis/
 ADD . /sites/siteapis/
 

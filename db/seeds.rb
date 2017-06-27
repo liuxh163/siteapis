@@ -10,12 +10,32 @@ users = User.create([
                        email: 'test-user-00@mail.com',
                        name: 'test-user-00',
                        activated: DateTime.now,
-                       admin: false
+                       admin: false,
+                       authentication_token: '123123',
+                       password_digest: '$2a$10$3o5GIa71zPrvPIPFFDalGuQbiXI4oazZljLj5S25wXNRebhGnYlba'
                      },
                      {
                        email: 'test-user-01@mail.com',
                        name: 'test-user-01',
                        activated: DateTime.now,
-                       admin: false
+                       admin: false,
+                       authentication_token: '123123',
+                       password_digest: '$2a$10$3o5GIa71zPrvPIPFFDalGuQbiXI4oazZljLj5S25wXNRebhGnYlba'
+                     },
+                     {
+                       email: 'test-user-02@mail.com',
+                       name: 'test-user-02',
+                       activated: DateTime.now,
+                       admin: false,
+                       authentication_token: '123123',
+                       password_digest: '$2a$10$3o5GIa71zPrvPIPFFDalGuQbiXI4oazZljLj5S25wXNRebhGnYlba'
+                     },
+                     {
+                       email: 'test-user-03@mail.com',
+                       name: 'test-user-03',
+                       activated: DateTime.now,
+                       admin: false,
+                       authentication_token: '123123',
+                       password_digest: '$2a$10$3o5GIa71zPrvPIPFFDalGuQbiXI4oazZljLj5S25wXNRebhGnYlba'
                      }
                     ])
