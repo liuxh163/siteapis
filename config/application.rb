@@ -12,12 +12,25 @@ require "action_cable/engine"
 # require "sprockets/railtie"
 require "rails/test_unit/railtie"
 
+require 'rack/throttle'
+
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
 module Siteapis
   class Application < Rails::Application
+  	config.autoload_paths << Rails.root.join('app/policies')
+    # set api rate limit
+    # config.middleware.use Rack::Throttle::Interval :min => 2.0
+
+    config.middleware.insert_before 0, "Rack::Cors" do
+      allow do
+        origins '*'
+        resource '*',:headers=>:any, :method=>[:get,:post,:put,:patch,:delete,:options,:head]
+      end
+    end
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

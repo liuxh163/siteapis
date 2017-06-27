@@ -13,11 +13,18 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+# User Authenticate gem
+gem 'pundit', '~> 1.1.0'
+# Use kaminari for paginate
+gem 'kaminari', '~> 1.0.1'
+# Use redis-throttle to set api rate limit
+gem 'rack-throttle', '~> 0.5.0'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-gem 'rack-cors'
+gem 'rack-cors', '~> 0.4.1'
 
 group :development do
   gem 'listen', '~> 3.0.5'
