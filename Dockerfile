@@ -12,6 +12,6 @@ ADD . /sites/siteapis/
 
 # run site web
 RUN bundle install
-CMD rails s -p 6789 -e production
+CMD sh ./start.sh
 
 EXPOSE 6789
