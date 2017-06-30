@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   		resources :sessions, only: [:create]
 
   		scope path: '/user/:user_id' do
-  			resources :microposts, only: [:index]
+  			resources :microposts, only: [:index, :create]
   		end
   	end
 

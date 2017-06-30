@@ -1,4 +1,6 @@
 class Api::V1::BaseController < ApplicationController
+	layout "api.v1"
+
 	include Pundit
 
   rescue_from Pundit::NotAuthorizedError, with: :deny_access
@@ -19,7 +21,12 @@ class Api::V1::BaseController < ApplicationController
 	end
 
 	def api_error(opts = {})
-		render nothing: true, status: opts[:status]
+		@api_errors = JSON.parse '{"errCode": "0", "errMsg": "error messages"}'
+		render status: opts[:status]
+	end
+
+	def api_success(opts = {})
+		render head: ok
 	end
 
 	def authenticate_user!

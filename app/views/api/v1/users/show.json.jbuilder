@@ -1,3 +1,7 @@
 json.user do
-  json.(@user, :id, :email, :name, :activated, :admin, :created_at, :updated_at)
+	if @user
+    json.(@user, :id, :email, :name, :activated, :admin, :created_at, :updated_at)
+  else
+  	json.null
+  end
 end
